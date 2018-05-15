@@ -4,10 +4,11 @@ using UnrealBuildTool;
 
 public class ProductivityPlugin : ModuleRules
 {
-	public ProductivityPlugin(TargetInfo Target)
+	public ProductivityPlugin(ReadOnlyTargetRules Target) : base(Target)
 	{
-		
-		PublicIncludePaths.AddRange(
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicIncludePaths.AddRange(
 			new string[] {
 				"ProductivityPlugin/Classes"
 				// ... add public include paths required here ...
@@ -44,18 +45,16 @@ public class ProductivityPlugin : ModuleRules
 			);
 
 
-        if (UEBuildConfiguration.bBuildEditor)
-        {
-            PrivateDependencyModuleNames.AddRange(
-                new string[]
-			    {
-				    "UnrealEd",
-				    "LevelEditor",
-				
-				    // ... add private dependencies that you statically link with here ...	
-			    }
-            );
-        }
+
+		PrivateDependencyModuleNames.AddRange(
+			new string[]
+			{
+				"UnrealEd",
+				"LevelEditor",
+			
+				// ... add private dependencies that you statically link with here ...	
+			}
+		);
 
 		
 		
